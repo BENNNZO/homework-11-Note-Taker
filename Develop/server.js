@@ -26,7 +26,7 @@ app.post('/api/notes', (req, res) => {
   const newNote = req.body;
   const notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
 
-  newNote.id = notes.length + 1;
+  newNote.id = notes.length++;
   notes.push(newNote);
 
   fs.writeFileSync('./db/db.json', JSON.stringify(notes));
@@ -40,7 +40,7 @@ app.delete('/api/notes/:id', (req, res) => {
 
   fs.writeFileSync('./db/db.json', JSON.stringify(updatedNotes));
 
-  res.json({ message: 'Note deleted' });
+  res.json({message: 'Note deleted!'});
 });
 
 // Start the server
